@@ -1,0 +1,14 @@
+= Knowledge =
+
+== Programming ==
+
+* [[C++]]
+
+
+
+  * [[Tasks]] -- things to be done _yesterday_!!!
+  * [[Project Gutenberg]] -- good books are power.
+  * [[Scratchpad]] -- various temporary stuff.
+
+
+= Projects =

@@ -1,0 +1,110 @@
+= Install Prerequisites =
+
+First we have to update and upgrade the system first
+
+{{{bash
+sudo apt update && sudo apt upgrade -you
+}}}
+
+Then, install the basic built-in toolchain
+
+{{{bash
+sudo apt install build-essential wget m4 flex bison
+}}}
+
+= Download GCC source code =
+
+We can download the GCC source code through [[https://gcc.gnu.org/mirrors.html|GNU mirror site]] or by using `git`
+
+{{{bash
+curl -LO http://mirror.rit.edu/gnu/gcc/gcc-10.2.0/gcc-10.2.0.tar.gz
+tar xzf gcc-10.2.0.tar.gz
+}}}
+or
+{{{bash
+git clone git://gcc.gnu.org/git/gcc.git gcc-10.2.0
+cd gcc-10.2.0
+git checkout releases/gcc-10.2.0
+}}}
+
+= Download GCC prerequisites =
+
+Inside the source folder, execute the following command:
+
+{{{bash
+sudo contrib/download_prerequisites
+}}}
+
+= Build GCC =
+
+Create a build folder named `gcc10build` (same level with the source folder)
+
+{{{bash
+mkdir gcc10build && cd gcc10build
+}}}
+
+== Generate build script ==
+
+For WSL2 (Windows 10, 64 bit system):
+
+{{{bash
+../gcc-10.2.0/configure -v --build=x86_64-linux-gnu --host=x86_64-linux-gnu \
+--target=x86_64-linux-gnu --prefix=/usr/local/gcc-10.2.0 --enable-checking=release \
+--enable-languages=c,c++ --disable-multilib --program-suffix=-10.2
+}}}
+
+For your Raspberry Pi with Ubuntu 20.04 Server or Jetson Nano ARM 64 bit system:
+
+{{{bash
+../gcc/configure -v --build=aarch64-linux-gnu --host=aarch64-linux-gnu \
+--target=aarch64-linux-gnu --prefix=/usr/local/gcc-10.2.0 --enable-checking=release \
+--enable-languages=c,c++ --disable-multilib --program-suffix=-10.2
+}}}
+
+== Build and install ==
+
+To build, execute the command `make -j 4`, which means the system will use `4` cpus for the build process.
+Change `4` to higher number if your system have more CPU, it will speed up the compilation process.
+
+Normally, it will take around **3 hours** for the Jeson Nanor/ Raspberry Pi 4 to finish the build.
+After the build is finished, execute the command `sudo make install-strip` to install to local system
+
+Add the following two lines into `.bashrc` or `.zshrc` or `.profile`:
+
+{{{bash
+export PATH=/usr/local/gcc-10.2.0/bin:$PATH
+export LD_LIBRARY_PATH=/usr/local/gcc-10.2.0/lib64:$LD_LIBRARY_PATH
+
+alias gcc=gcc-10.2
+alias g++=g++-10.2
+}}}
+
+Restart the terminal, and check the version with the command `g++ --version`
+
+= Test C++20 =
+
+Create a test program named `test_cpp20.cpp` with the following source code:
+
+{{{cpp
+#include <iostream>
+#include <thread>
+int main() {
+  std::jthread thr([] { std::cout << "This is C++20 jthread." << std::endl; });
+  return 0;
+}
+}}}
+
+Compile it and run:
+
+{{{bash
+g++ -Wall -std=c++2a -pthread test_cpp20.cpp -o test_cpp20
+./test_cpp20
+}}}
+
+If the program compiled and output with `This is C++20 jthread.` then we have
+successfully installed GCC.
+
+= Clean up (otpional) =
+
+If everything works, we can now delete the `source` and the `build` folder to save disk space.
+

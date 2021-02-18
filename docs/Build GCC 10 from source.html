@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<title>Build GCC 10 from source</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="Install Prerequisites"><h1 id="Install Prerequisites" class="header"><a href="#Install Prerequisites">Install Prerequisites</a></h1></div>
+
+<p>
+First we have to update and upgrade the system first
+</p>
+
+<pre bash>
+sudo apt update &amp;&amp; sudo apt upgrade -you
+</pre>
+
+<p>
+Then, install the basic built-in toolchain
+</p>
+
+<pre bash>
+sudo apt install build-essential wget m4 flex bison
+</pre>
+
+<div id="Download GCC source code"><h1 id="Download GCC source code" class="header"><a href="#Download GCC source code">Download GCC source code</a></h1></div>
+
+<p>
+We can download the GCC source code through <a href="https://gcc.gnu.org/mirrors.html">GNU mirror site</a> or by using <code>git</code>
+</p>
+
+<pre bash>
+curl -LO http://mirror.rit.edu/gnu/gcc/gcc-10.2.0/gcc-10.2.0.tar.gz
+tar xzf gcc-10.2.0.tar.gz
+</pre>
+<p>
+or
+</p>
+<pre bash>
+git clone git://gcc.gnu.org/git/gcc.git gcc-10.2.0
+cd gcc-10.2.0
+git checkout releases/gcc-10.2.0
+</pre>
+
+<div id="Download GCC prerequisites"><h1 id="Download GCC prerequisites" class="header"><a href="#Download GCC prerequisites">Download GCC prerequisites</a></h1></div>
+
+<p>
+Inside the source folder, execute the following command:
+</p>
+
+<pre bash>
+sudo contrib/download_prerequisites
+</pre>
+
+<div id="Build GCC"><h1 id="Build GCC" class="header"><a href="#Build GCC">Build GCC</a></h1></div>
+
+<p>
+Create a build folder named <code>gcc10build</code> (same level with the source folder)
+</p>
+
+<pre bash>
+mkdir gcc10build &amp;&amp; cd gcc10build
+</pre>
+
+<div id="Build GCC-Generate build script"><h2 id="Generate build script" class="header"><a href="#Build GCC-Generate build script">Generate build script</a></h2></div>
+
+<p>
+For WSL2 (Windows 10, 64 bit system):
+</p>
+
+<pre bash>
+../gcc-10.2.0/configure -v --build=x86_64-linux-gnu --host=x86_64-linux-gnu \
+--target=x86_64-linux-gnu --prefix=/usr/local/gcc-10.2.0 --enable-checking=release \
+--enable-languages=c,c++ --disable-multilib --program-suffix=-10.2
+</pre>
+
+<p>
+For your Raspberry Pi with Ubuntu 20.04 Server or Jetson Nano ARM 64 bit system:
+</p>
+
+<pre bash>
+../gcc/configure -v --build=aarch64-linux-gnu --host=aarch64-linux-gnu \
+--target=aarch64-linux-gnu --prefix=/usr/local/gcc-10.2.0 --enable-checking=release \
+--enable-languages=c,c++ --disable-multilib --program-suffix=-10.2
+</pre>
+
+<div id="Build GCC-Build and install"><h2 id="Build and install" class="header"><a href="#Build GCC-Build and install">Build and install</a></h2></div>
+
+<p>
+To build, execute the command <code>make -j 4</code>, which means the system will use <code>4</code> cpus for the build process.
+Change <code>4</code> to higher number if your system have more CPU, it will speed up the compilation process.
+</p>
+
+<p>
+Normally, it will take around *<span id="Build GCC-Build and install-3 hours"></span><strong id="3 hours">3 hours</strong>* for the Jeson Nanor/ Raspberry Pi 4 to finish the build.
+After the build is finished, execute the command <code>sudo make install-strip</code> to install to local system
+</p>
+
+<p>
+Add the following two lines into <code>.bashrc</code> or <code>.zshrc</code> or <code>.profile</code>:
+</p>
+
+<pre bash>
+export PATH=/usr/local/gcc-10.2.0/bin:$PATH
+export LD_LIBRARY_PATH=/usr/local/gcc-10.2.0/lib64:$LD_LIBRARY_PATH
+
+alias gcc=gcc-10.2
+alias g++=g++-10.2
+</pre>
+
+<p>
+Restart the terminal, and check the version with the command <code>g++ --version</code>
+</p>
+
+<div id="Test C++20"><h1 id="Test C++20" class="header"><a href="#Test C++20">Test C++20</a></h1></div>
+
+<p>
+Create a test program named <code>test_cpp20.cpp</code> with the following source code:
+</p>
+
+<pre cpp>
+#include &lt;iostream&gt;
+#include &lt;thread&gt;
+int main() {
+  std::jthread thr([] { std::cout &lt;&lt; "This is C++20 jthread." &lt;&lt; std::endl; });
+  return 0;
+}
+</pre>
+
+<p>
+Compile it and run:
+</p>
+
+<pre bash>
+g++ -Wall -std=c++2a -pthread test_cpp20.cpp -o test_cpp20
+./test_cpp20
+</pre>
+
+<p>
+If the program compiled and output with <code>This is C++20 jthread.</code> then we have
+successfully installed GCC.
+</p>
+
+<div id="Clean up (otpional)"><h1 id="Clean up (otpional)" class="header"><a href="#Clean up (otpional)">Clean up (otpional)</a></h1></div>
+
+<p>
+If everything works, we can now delete the <code>source</code> and the <code>build</code> folder to save disk space.
+</p>
+
+</body>
+</html>

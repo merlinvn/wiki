@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<title>Install and Update go</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="Install go"><h1 id="Install go" class="header"><a href="#Install go">Install go</a></h1></div>
+
+<p>
+Download pre-built package from <a href="https://golang.org/dl/">golang.org</a>
+</p>
+
+<pre bash>
+curl -sLO https://golang.org/dl/go1.16.linux-amd64.tar.gz
+</pre>
+
+<p>
+Extract / install the downloaded package
+</p>
+
+<pre bash>
+sudo tar -C /usr/local -xzf go1.16.linux-amd64.tar.gz
+</pre>
+
+<p>
+Add <code>/usr/local/go/bin</code> to <code>PATH</code> environment variable. To persit the changes,
+it's highly recommend that to put the following line to .profile.
+</p>
+
+<pre bash>
+export GOPATH=$HOME/go
+export PATH=$PATH:/usr/local/go/bin
+</pre>
+
+<p>
+Verify the version
+</p>
+
+<pre bash>
+go version
+</pre>
+
+<div id="Update go"><h1 id="Update go" class="header"><a href="#Update go">Update go</a></h1></div>
+
+<p>
+Uninstall the previous version
+</p>
+
+<pre bash>
+sudo rm -rf /usr/local/go
+</pre>
+
+<p>
+Install the new version by following the installation steps above. Here you
+don't have to add <code>/usr/local/go/bin</code> to PATH as it existed.
+</p>
+
+</body>
+</html>

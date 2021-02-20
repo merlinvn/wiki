@@ -1,0 +1,22 @@
+= Windows Moving in Vim =
+* Some useful commands:
+  * `CTRL-W r` Rotate windows downwards/rightwards. The first window becomes
+    the second one, the second one becomes the third one, etc. The last window
+    becomes the first window.  The cursor remains in the same window.This only
+    works within the row or column of windows that the current window is in.
+  * `CTRL-W Shift-R` Rotate windows upwards/leftwards.
+  * `CTRL-W x` Swap current windowwith next one.
+  * `Ctrl-W, Shift-H` - move this window to the far `left`
+  * `Ctrl-W, Shift-K` - move this window to the `top`
+  * `Ctrl-W, Shift-J` - move this window to the far `bottom`
+  * `Ctrl-W, Shift-l` - move this window to the `right`
+
+
+* All infomation can be found in the vim document via:
+
+{{{
+  :h window-moving
+  }}}
+
+
+

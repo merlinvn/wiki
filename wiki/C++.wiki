@@ -1,3 +1,4 @@
 = C++ =
 
 * [[Build GCC 10 from source]] -- to support C++20 on wsl2, Raspberry Pi, and Jetson Nano
+* [[Install Clang 12 in Ubuntu]] -- to have clangd, clang-format

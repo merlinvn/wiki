@@ -1,0 +1,27 @@
+= Install Clang 12 in Ubuntu 20.10 =
+
+{{{
+wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
+
+sudo add-apt-repository deb http://apt.llvm.org/groovy/ llvm-toolchain-groovy-12 main
+sudo apt update
+
+sudo apt-get install -y clang-12 lldb-12 lld-12 clangd-12 clang-tools-12 clang-format-12 clang-tidy-12
+
+}}}
+
+For other clang version or Ubuntu version change `12` to clang version number
+and `deb http://apt.llvm.org/groovy/ llvm-toolchain-groovy-12 main` to proper
+repository.
+
+See [[https://apt.llvm.org/|LLVM]] for more info
+
+= Symlink clang-12 to clang (optional) =
+
+{{{
+sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-12 60
+sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-12 60
+sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-12 60
+sudo update-alternatives --install /usr/bin/clang-format clang-format /usr/bin/clang-format-12 60
+sudo update-alternatives --install /usr/bin/clang-tidy clang-tidy /usr/bin/clang-tidy-12 60
+}}}

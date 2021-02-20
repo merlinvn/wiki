@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<title>Wrap Existing Text at 80 Characters in Vim</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<p>
+(Copied from <a href="https://thoughtbot.com/blog/wrap-existing-text-at-80-characters-in-vim">Thoughtbot</a>)
+</p>
+
+<p>
+You have an existing block of text or code in vim. You want to re-format it to wrap to 80-characters.
+</p>
+
+<pre>
+:set textwidth=80
+</pre>
+
+<p>
+You might want this setting to apply automatically within certain file types like Markdown:
+</p>
+
+<pre>
+au BufRead,BufNewFile *.md setlocal textwidth=80
+We have that setting in thoughtbot/dotfiles.
+</pre>
+
+<p>
+Select the lines of text you want to re-format:
+</p>
+
+<pre>
+v
+</pre>
+
+<p>
+Reformat it:
+</p>
+
+<pre>
+gq
+</pre>
+
+<p>
+Learn more:
+</p>
+
+<pre>
+:h gq
+</pre>
+
+</body>
+</html>

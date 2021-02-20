@@ -1,0 +1,38 @@
+= Install go =
+
+Download pre-built package from [[https://golang.org/dl/|golang.org]]
+
+{{{bash
+curl -sLO https://golang.org/dl/go1.16.linux-amd64.tar.gz
+}}}
+
+Extract / install the downloaded package
+
+{{{bash
+sudo tar -C /usr/local -xzf go1.16.linux-amd64.tar.gz
+}}}
+
+Add `/usr/local/go/bin` to `PATH` environment variable. To persit the changes,
+it's highly recommend that to put the following line to .profile.
+
+{{{bash
+export GOPATH=$HOME/go
+export PATH=$PATH:/usr/local/go/bin
+}}}
+
+Verify the version
+
+{{{bash
+go version
+}}}
+
+= Update go =
+
+Uninstall the previous version
+
+{{{bash
+sudo rm -rf /usr/local/go
+}}}
+
+Install the new version by following the installation steps above. Here you
+don't have to add `/usr/local/go/bin` to PATH as it existed.

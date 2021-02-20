@@ -1,0 +1,13 @@
+= Install rbenv =
+
+In Ubuntu, just simply call:
+
+{{{bash
+sudo apt install rbenv
+}}}
+
+For other OS, refer to main [[https://github.com/rbenv/rbenv#installation|docs]]
+
+* To list all availabe ruby version: `rbenv install -l`
+* To install ruby version 2.7.1: `rbenv install 2.7.1`
+* To use 2.7.1 as default: `rbenv global 2.7.1`

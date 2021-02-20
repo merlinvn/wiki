@@ -1,7 +1,13 @@
 = Knowledge =
 
-== Programming ==
+= Programming ==
 
 * [[C++]]
+* [[Go]]
 
-= Projects =
+== Tools ==
+
+* [[Vim]]
+* [[rbenv]]
+
+== Projects ==

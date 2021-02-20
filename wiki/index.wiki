@@ -2,12 +2,13 @@
 
 = Programming ==
 
-* [[C++]]
-* [[Go]]
+* [[programming/C++|C++]]
+* [[programming/Go|Go]]
 
 == Tools ==
 
-* [[Vim]]
-* [[rbenv]]
+* [[tools/Vim|vim]]
+* [[tools/rbenv|rbenv]]
+* [[tools/xmonad|xmonad]]
 
 == Projects ==

@@ -1,0 +1,19 @@
+Open the crontab file
+
+{{{bash
+crontab -e
+}}}
+
+and, add the following line, change `/usr/share/background` to the folder
+containing wallpapers
+
+{{{
+*/20 * * * * (export DISPLAY=:0.0 && /bin/date && /usr/bin/nitrogen --set-zoom-fill --random /usr/share/background
+}}}
+
+After that, you can restart the cron service by:
+
+{{{bash
+sudo service cron restart
+}}}
+

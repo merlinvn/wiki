@@ -11,4 +11,8 @@
 * [[tools/rbenv|rbenv]]
 * [[tools/xmonad|xmonad]]
 
+== Os ==
+
+* [[os/linux|Linux]]
+
 == Projects ==

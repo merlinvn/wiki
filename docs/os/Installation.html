@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="../style.css">
+<title>Installation</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<p>
+For more details and helps, the <a href="https://wiki.archlinux.org/index.php/installation_guide#Pre-installation">Wiki Archlinux</a> is your friend.
+</p>
+
+<div id="Pre-Installation"><h1 id="Pre-Installation" class="header"><a href="#Pre-Installation">Pre-Installation</a></h1></div>
+
+<div id="Pre-Installation-Boot to usb disk"><h2 id="Boot to usb disk" class="header"><a href="#Pre-Installation-Boot to usb disk">Boot to usb disk</a></h2></div>
+
+<p>
+Using the installation usb to boot to the live environment. Remember to use
+UEFI boot instead of Legacy boot, this can be changed from the BIOS setting.
+</p>
+
+<p>
+The boot mode can be verified by listing the <code>efivars</code> directory. If the <code>ls</code>
+command shows nothing then we are not booting by using the UEFI mode.
+</p>
+
+<pre bash>
+ls /sys/firmware/efi/efivars
+</pre>
+
+<div id="Pre-Installation-Connect to the Internet"><h2 id="Connect to the Internet" class="header"><a href="#Pre-Installation-Connect to the Internet">Connect to the Internet</a></h2></div>
+
+<ul>
+<li>
+Check the network interface is listed and enabled, by using <code>ip link</code> or <code>ip a</code>
+
+<li>
+Connect to the network:
+
+<ul>
+<li>
+Ethernet: just simply plug-in your network cable, and hopefully the DHCP
+    will work on its own.
+
+<li>
+Wifi: use the tool <code>iwctl</code> to connect and authenticate with the wifi
+    network. By calling the <code>iwctl</code>, you will be inside another interactive
+    prompt that start with <code>[idw]#</code>. Here is some usefull commands to help you
+    connect to the internet:
+
+<ul>
+<li>
+<code>help</code>: list all available commands
+
+<li>
+<code>device list</code>: list all wifi devices
+
+<li>
+<code>station [device] scan</code>: scan network for the <code>[device]</code>, in my case
+        the <code>[device]</code> is <code>wlan0</code>.
+
+<li>
+<code>station [device] get-networks</code>: get the list of the available wifi
+        networks to the <code>[device]</code>
+
+<li>
+<code>station [device] connect [SSID]</code>: connect to the <code>[SSID]</code> network, it
+        will automatically ask for password if needed.
+
+<li>
+<code>Ctrl-d</code> to exit the <code>iwctl</code> prompt.
+
+</ul>
+</ul>
+<li>
+Use <code>ping google.com</code> to verify.
+
+</ul>
+
+<div id="Pre-Installation-Update the system clock"><h2 id="Update the system clock" class="header"><a href="#Pre-Installation-Update the system clock">Update the system clock</a></h2></div>
+
+<pre>
+timedatectl set-ntp true
+</pre>
+
+<div id="Pre-Installation-Partition the disk"><h2 id="Partition the disk" class="header"><a href="#Pre-Installation-Partition the disk">Partition the disk</a></h2></div>
+
+<p>
+If recognized by the live boot system, disks are assigned to block devices as a
+"file" inside the <code>/dev/</code> folder. To identify those devices, you can use
+command <code>lsblk</code> or <code>fdisk -l</code>. Normally your disk will be listed with the
+following name pattern <code>/dev/sd[abc]/</code> or <code>/dev/nvme[xxx]</code>.
+</p>
+
+<p>
+To start the partitioning, you can simply call <code>fdisk /dev/sda</code> to select
+<code>/dev/sda</code> and be inside another prompt. When inside the prompt, use the
+command <code>m</code> to list all available comands.
+</p>
+
+<p>
+Here we will wipe out the disk and create partitions from scratch, besure to
+back up all important data from your disk first. Then, the following partition
+layout will be created:
+</p>
+
+
+<table>
+<tr>
+<th>
+Mount point
+</th>
+<th>
+Partition
+</th>
+<th>
+Partition Type
+</th>
+<th>
+Suggested Size
+</th>
+</tr>
+<tr>
+<td>
+<code>/mnt/boot</code> or <code>/mnt/efi</code>
+</td>
+<td>
+<code>/dev/efi_system_partition</code>
+</td>
+<td>
+EFI system partition
+</td>
+<td>
+550 MB
+</td>
+</tr>
+<tr>
+<td>
+<code>[SWAP]</code>
+</td>
+<td>
+<code>/dev/swap_partion</code>
+</td>
+<td>
+Linux swap
+</td>
+<td>
+2 GB
+</td>
+</tr>
+<tr>
+<td>
+<code>/mnt</code>
+</td>
+<td>
+<code>/dev/root_partition</code>
+</td>
+<td>
+Linux x86_64 (/)
+</td>
+<td>
+All the remain of the disk
+</td>
+</tr>
+</table>
+
+<p>
+Execute the following commands in order to create the above layouts:
+</p>
+
+<ol>
+<li>
+<code>g</code>: create a new empty GPT partition table
+
+<li>
+<code>n</code>: create the first partion (EFI partition), accept the default settings for partition
+   number <code>1</code> and first sector position. Enter <code>+550M</code> for the size, the <code>+</code> sign is
+   very important here to indicate that we want to create by the size but not
+   by the sector position.
+
+<li>
+<code>n</code>: create the second partion (swap partition), accept the default settings
+   for partition number <code>2</code> and the first sector position. For the last sector,
+   use <code>+2G</code> to create a 2Gb swap partition.
+
+<li>
+<code>n</code>: create the third partition (root partition), accept all the default
+   settings to use the rest of the disk.
+
+<li>
+<code>t</code>: change the type of first partition to <code>1</code> (EFI system) by select <code>1</code> (first partition) and then <code>1</code> (type 1).
+
+<li>
+<code>t</code>: change the type of second partition to <code>19</code> (Linux swap) by select <code>2</code> (second partition) and then <code>19</code> (type 19).
+
+<li>
+(This is optional) <code>t</code>: change the type of third partition to <code>20</code> (Linux filesystem) by select <code>3</code> (second partition) and then <code>20</code> (type 20).
+
+<li>
+<code>w</code> write and quit
+
+</ol>
+
+<div id="Pre-Installation-Format the partitions"><h2 id="Format the partitions" class="header"><a href="#Pre-Installation-Format the partitions">Format the partitions</a></h2></div>
+
+<p>
+Once the new partitions are created, each of them needs to be formated with an appropriate <code>file system</code>. Run the following commands:
+</p>
+
+<pre bash>
+mkfs.fat -F32 /dev/sda1
+mkswap /dev/sda2
+mkfs.ext4 /dev/sda3
+</pre>
+
+<p>
+Those commands will format <code>sda1</code> as <code>fat32</code>, <code>sda2</code> as <code>swap</code>, and <code>sda3</code> as <code>ext4</code> file system.
+</p>
+
+<div id="Pre-Installation-Mount the file systems and turn on swap"><h2 id="Mount the file systems and turn on swap" class="header"><a href="#Pre-Installation-Mount the file systems and turn on swap">Mount the file systems and turn on swap</a></h2></div>
+
+<p>
+Mount the root volume to <code>/mnt</code>. If the root volume is <code>/dev/sda3</code>:
+</p>
+
+<pre bash>
+mount /dev/sda3 /mnt
+</pre>
+
+<p>
+Using <code>mkdir</code> to create a mount point for EFI partition: <code>mkdir -p /mnt/boot/EFI</code>. Then mount it with <code>mount /dev/sda1 /mnt/boot/EFI</code>
+</p>
+
+<p>
+Turn on swap by <code>swapon /dev/sda2</code>
+</p>
+
+<div id="Installation"><h1 id="Installation" class="header"><a href="#Installation">Installation</a></h1></div>
+
+<div id="Installation-Install essential packages"><h2 id="Install essential packages" class="header"><a href="#Installation-Install essential packages">Install essential packages</a></h2></div>
+
+<p>
+Use the <code>pacstrap</code> script to bootstrap the <code>/mnt</code> with some base packages:
+</p>
+
+<pre bash>
+pacstrap /mnt base linux linux-firmware
+</pre>
+
+<div id="Installation-Config the system"><h2 id="Config the system" class="header"><a href="#Installation-Config the system">Config the system</a></h2></div>
+
+<div id="Installation-Config the system-fstab"><h3 id="fstab" class="header"><a href="#Installation-Config the system-fstab">fstab</a></h3></div>
+<p>
+Generate <code>fstab</code> file by <code>genfstab -U /mnt &gt;&gt; /mnt/etc/fstab</code>
+</p>
+
+<div id="Installation-Config the system-chroot"><h3 id="chroot" class="header"><a href="#Installation-Config the system-chroot">chroot</a></h3></div>
+<p>
+Change root to the new system <code>arch-chroot /mnt</code>
+</p>
+
+<div id="Installation-Config the system-Time zone"><h3 id="Time zone" class="header"><a href="#Installation-Config the system-Time zone">Time zone</a></h3></div>
+
+<pre bash>
+ln -sf /usr/share/zoneinfo/[Region]/[City] /etc/localtime
+hwclock --systohc
+</pre>
+
+<div id="Installation-Config the system-Localization"><h3 id="Localization" class="header"><a href="#Installation-Config the system-Localization">Localization</a></h3></div>
+
+<p>
+To create/edit the <code>locale.conf</code>, we have to install the editor first as the <code>base</code> package does not include them:
+</p>
+
+<pre bash>
+pacman -S nano vim
+</pre>
+
+<p>
+Edit the <code>/etc/locale.gen</code> and uncomment <code>en_US.UTF-8 UTF-8</code> line (and other locales if needed) by using <code>nano</code> or <code>vim</code>.
+</p>
+
+<p>
+Generate the locales by running <code>locale-gen</code>
+</p>
+
+<p>
+(optional) Create the <code>/etc/locale.conf</code> to set LANG variables and change the keyboard layout in <code>/etc/vconsole.conf</code> if neccessary.
+</p>
+
+<div id="Installation-Config the system-Network Configuration"><h3 id="Network Configuration" class="header"><a href="#Installation-Config the system-Network Configuration">Network Configuration</a></h3></div>
+
+<p>
+Use <code>nano</code> or <code>vim</code> to create <code>/etc/hostname</code> file with the content (change <code>myhostname</code> to the name of your beloved machine):
+</p>
+
+<pre>
+myhostname
+</pre>
+
+<p>
+Adding entries to <code>/etc/hosts</code>
+</p>
+
+<pre>
+127.0.0.1   localhost
+::1         localhost
+127.0.0.1   myhostname.localdomain myhostname
+</pre>
+
+<p>
+If the system has a permanent IP address, it should be used instead of <code>127.0.0.1</code>
+</p>
+
+<div id="Installation-Config the system-Change root passsword and add new user"><h3 id="Change root passsword and add new user" class="header"><a href="#Installation-Config the system-Change root passsword and add new user">Change root passsword and add new user</a></h3></div>
+
+<p>
+To change root password, use the command <code>passwd</code>.
+</p>
+
+<p>
+It's highly recommended that you should create a separate user to use the
+system. To create new user and add to root group, run the following commands:
+</p>
+
+<pre bash>
+useradd -m [username]
+passwd [username]
+usermod -aG wheel,audio,video,optical,storage neo
+</pre>
+
+<p>
+Remember to install <code>sudo</code> package so as new user can run <code>sudo ...</code> by <code>pacman -S sudo</code>
+</p>
+
+<p>
+Use <code>visudo</code> to edit <code>sudoers</code> in order to allow the <code>wheel</code> group run <code>sudo ...</code> commands. Uncomment the folowing line in the <code>sudoers</code> file:
+</p>
+<pre>
+%wheel ALL=(ALL) ALL
+</pre>
+
+<div id="Installation-Config the system-Create boot loader"><h3 id="Create boot loader" class="header"><a href="#Installation-Config the system-Create boot loader">Create boot loader</a></h3></div>
+
+<p>
+Install the following packages that needed to create EFI bootloader:
+</p>
+
+<pre bash>
+pacman -S grub efibootmgr dosfstools os-prober mtools
+</pre>
+
+<p>
+Mount the <code>/dev/sda1/</code> to <code>/boot/EFI</code> if you did not do it in the previous step.
+</p>
+
+<p>
+Install GRUB:
+</p>
+
+<pre bash>
+grub-install --target=x86_64-efi --bootloader-id=grub_uefi --recheck
+grub-mkconfig -o /boot/grub/grub.cfg
+</pre>
+
+<div id="Installation-Config the system-Install neccessary packages"><h3 id="Install neccessary packages" class="header"><a href="#Installation-Config the system-Install neccessary packages">Install neccessary packages</a></h3></div>
+
+<p>
+The base package DOES NOT include tools from the live installation environment,
+so REMEMBER to install other pacakges to suite your need for a fully functional
+base system. Consider install the following softwares:
+</p>
+<ul>
+<li>
+Network manager (must have): <code>networkmanager</code>
+
+<li>
+Text editors: <code>nano</code>, <code>vim</code>
+
+<li>
+Tools: <code>git</code>
+
+<li>
+Others can be install after reboot and connected to internet
+
+</ul>
+
+<p>
+Using the following command to install packges:
+</p>
+<pre bash>
+pacman -S networkmanager nano vim git
+</pre>
+
+<p>
+Then, enable <code>NetworkManager</code> service to automatically start network manager after reboot.
+</p>
+
+<pre bash>
+systemctl enable NetworkManager
+</pre>
+
+<div id="Installation-Config the system-Unmount and reboot"><h3 id="Unmount and reboot" class="header"><a href="#Installation-Config the system-Unmount and reboot">Unmount and reboot</a></h3></div>
+
+<p>
+Call <code>exit</code> to return to the live installation environment. Then unmount the <code>/mnt</code>
+</p>
+
+<pre>
+umount -l /mnt
+</pre>
+
+<p>
+Call <code>reboot</code> and unplug the installation usb.
+</p>
+
+<div id="Installation-Config the system-Reconnect to internet using Network Manager"><h3 id="Reconnect to internet using Network Manager" class="header"><a href="#Installation-Config the system-Reconnect to internet using Network Manager">Reconnect to internet using Network Manager</a></h3></div>
+
+<p>
+After reboot, we cannot connect to internet as we use new <code>networkmanager</code>.
+Using the following commands to reconnect to wifi network:
+</p>
+
+<ul>
+<li>
+<code>nmcli device wifi list</code>: List nearby wifi network
+
+<li>
+<code>nmcli device wifi connect [SSID] password [password] ifname [device name]</code>: to connect to [SSID] wifi network with [password] vie the interface [device name]
+
+<li>
+For other examples, refer to the <a href="https://wiki.archlinux.org/index.php/NetworkManager#nmcli_examples">Arch Wiki</a>
+
+</ul>
+
+<p>
+From now on we have finished the based Arch Linux with internet so as you can install other packages of your choice, i.e. X11, windows manager, ...
+</p>
+
+</body>
+</html>

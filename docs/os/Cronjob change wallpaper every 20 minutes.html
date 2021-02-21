@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="../style.css">
+<title>Cronjob change wallpaper every 20 minutes</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<p>
+Open the crontab file
+</p>
+
+<pre bash>
+crontab -e
+</pre>
+
+<p>
+and, add the following line, change <code>/usr/share/background</code> to the folder
+containing wallpapers
+</p>
+
+<pre>
+*/20 * * * * (export DISPLAY=:0.0 &amp;&amp; /bin/date &amp;&amp; /usr/bin/nitrogen --set-zoom-fill --random /usr/share/background
+</pre>
+
+<p>
+After that, you can restart the cron service by:
+</p>
+
+<pre bash>
+sudo service cron restart
+</pre>
+
+</body>
+</html>

@@ -1,3 +1,7 @@
+= Arch Linux =
+
+* [[Installation]]
+
 = Tips =
 
 * [[Cronjob change wallpaper every 20 minutes]]

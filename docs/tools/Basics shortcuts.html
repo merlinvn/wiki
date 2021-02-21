@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="../style.css">
+<title>Basics shortcuts</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<p>
+The default modifier <code>mod</code> key is <code>alt</code>.
+</p>
+
+<div id="Action key bindings / Launching and kill programs"><h1 id="Action key bindings / Launching and kill programs" class="header"><a href="#Action key bindings / Launching and kill programs">Action key bindings / Launching and kill programs</a></h1></div>
+
+<table>
+<tr>
+<th>
+Key binding
+</th>
+<th>
+Action
+</th>
+</tr>
+<tr>
+<td>
+<code>mod-Shift-/</code>
+</td>
+<td>
+Run xmessage with a summary of the default keybindings (useful for beginners)
+</td>
+</tr>
+<tr>
+<td>
+<code>mod-Shift-Enter</code>
+</td>
+<td>
+Launch terminal
+</td>
+</tr>
+<tr>
+<td>
+<code>mod-p</code>
+</td>
+<td>
+Launch dmenu (similar to windows <code>start</code>)
+</td>
+</tr>
+<tr>
+<td>
+<code>mod-Shift-c</code>
+</td>
+<td>
+<code>c</code>lose the current active window
+</td>
+</tr>
+<tr>
+<td>
+<code>mod-Shift-q</code>
+</td>
+<td>
+<code>q</code>uit xmonad / Log out
+</td>
+</tr>
+</table>
+
+<div id="Focus Movement key bindings"><h1 id="Focus Movement key bindings" class="header"><a href="#Focus Movement key bindings">Focus Movement key bindings</a></h1></div>
+
+<table>
+<tr>
+<th>
+Key binding
+</th>
+<th>
+Action
+</th>
+</tr>
+<tr>
+<td>
+<code>mod-Space</code>
+</td>
+<td>
+Rotate through available layout
+</td>
+</tr>
+<tr>
+<td>
+<code>mod-Shift-Space</code>
+</td>
+<td>
+Reset layouts on the current workspace to default
+</td>
+</tr>
+<tr>
+<td>
+<code>mod-tab</code> <code>mod-j</code>
+</td>
+<td>
+Move focus to the next window
+</td>
+</tr>
+<tr>
+<td>
+<code>mod-Shift-tab</code> <code>mod-k</code>
+</td>
+<td>
+Move focus to the previous window
+</td>
+</tr>
+<tr>
+<td>
+<code>mod-m</code>
+</td>
+<td>
+Move focust to the master window
+</td>
+</tr>
+<tr>
+<td>
+<code>mod-[1..9]</code>
+</td>
+<td>
+Switch to workspace N
+</td>
+</tr>
+<tr>
+<td>
+<code>mod-{w,e,r}</code>
+</td>
+<td>
+Switch to physical screen N
+</td>
+</tr>
+</table>
+
+<div id="Move windows key bindings"><h1 id="Move windows key bindings" class="header"><a href="#Move windows key bindings">Move windows key bindings</a></h1></div>
+
+<table>
+<tr>
+<th>
+Key binding
+</th>
+<th>
+Action
+</th>
+</tr>
+<tr>
+<td>
+<code>mod-Return</code>
+</td>
+<td>
+Swap the focused window with the <code>master</code> window
+</td>
+</tr>
+<tr>
+<td>
+<code>mod-Shift-j</code>
+</td>
+<td>
+Swap the focused window with the <code>next</code> window
+</td>
+</tr>
+<tr>
+<td>
+<code>mod-Shift-k</code>
+</td>
+<td>
+Swap the focused window with the <code>next</code> window
+</td>
+</tr>
+<tr>
+<td>
+<code>mod-h</code>
+</td>
+<td>
+Shrink the master area
+</td>
+</tr>
+<tr>
+<td>
+<code>mod-l</code>
+</td>
+<td>
+Expand the master area
+</td>
+</tr>
+<tr>
+<td>
+<code>mod-,</code>
+</td>
+<td>
+Increase the number of windows in the master area
+</td>
+</tr>
+<tr>
+<td>
+<code>mod-.</code>
+</td>
+<td>
+Decrease the number of windows in the master area
+</td>
+</tr>
+<tr>
+<td>
+<code>mod-Shift-[1..9]</code>
+</td>
+<td>
+Move the current window to workspace N
+</td>
+</tr>
+<tr>
+<td>
+<code>mod-Shift-{w,e,r}</code>
+</td>
+<td>
+Move the current window to screen N
+</td>
+</tr>
+<tr>
+<td>
+<code>mod-t</code>
+</td>
+<td>
+Put the current floating window back into tiling; unfloat and re-tile it
+</td>
+</tr>
+</table>
+
+<div id="Mouse button bindings"><h1 id="Mouse button bindings" class="header"><a href="#Mouse button bindings">Mouse button bindings</a></h1></div>
+
+<table>
+<tr>
+<th>
+Key binding
+</th>
+<th>
+Action
+</th>
+</tr>
+<tr>
+<td>
+<code>mod-button1</code>
+</td>
+<td>
+Set the window to floating mode and move by dragging
+</td>
+</tr>
+<tr>
+<td>
+<code>mod-button3</code>
+</td>
+<td>
+Set the window to floating mode and resize by dragging
+</td>
+</tr>
+<tr>
+<td>
+<code>mod-middleButton</code>
+</td>
+<td>
+Raise the window to the top of the stack
+</td>
+</tr>
+</table>
+
+<p>
+Ref: <a href="https://gist.github.com/micrub/aeebe7eb4d2df9e5e203e76a0fd89542">https://gist.github.com/micrub/aeebe7eb4d2df9e5e203e76a0fd89542</a>
+</p>
+
+</body>
+</html>

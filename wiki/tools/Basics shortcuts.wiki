@@ -1,0 +1,49 @@
+The default modifier `mod` key is `alt`.
+
+= Action key bindings / Launching and kill programs =
+
+| Key binding       | Action                                                                        |
+|-------------------|-------------------------------------------------------------------------------|
+| `mod-Shift-/`     | Run xmessage with a summary of the default keybindings (useful for beginners) |
+| `mod-Shift-Enter` | Launch terminal                                                               |
+| `mod-p`           | Launch dmenu (similar to windows `start`)                                     |
+| `mod-Shift-c`     | `c`lose the current active window                                             |
+| `mod-Shift-q`     | `q`uit xmonad / Log out                                                       |
+
+= Focus Movement key bindings =
+
+| Key binding                 | Action                                            |
+|-----------------------------|---------------------------------------------------|
+| `mod-Space`                 | Rotate through available layout                   |
+| `mod-Shift-Space`           | Reset layouts on the current workspace to default |
+| `mod-tab` `mod-j`           | Move focus to the next window                     |
+| `mod-Shift-tab` `mod-k`     | Move focus to the previous window                 |
+| `mod-m`                     | Move focust to the master window                  |
+| `mod-[1..9]`                | Switch to workspace N                             |
+| `mod-{w,e,r}`               | Switch to physical screen N                       |
+
+= Move windows key bindings =
+
+| Key binding         | Action                                                                   |
+|---------------------|--------------------------------------------------------------------------|
+| `mod-Return`        | Swap the focused window with the `master` window                         |
+| `mod-Shift-j`       | Swap the focused window with the `next` window                           |
+| `mod-Shift-k`       | Swap the focused window with the `next` window                           |
+| `mod-h`             | Shrink the master area                                                   |
+| `mod-l`             | Expand the master area                                                   |
+| `mod-,`             | Increase the number of windows in the master area                        |
+| `mod-.`             | Decrease the number of windows in the master area                        |
+| `mod-Shift-[1..9]`  | Move the current window to workspace N                                   |
+| `mod-Shift-{w,e,r}` | Move the current window to screen N                                      |
+| `mod-t`             | Put the current floating window back into tiling; unfloat and re-tile it |
+
+= Mouse button bindings=
+| Key binding        | Action                                                 |
+|--------------------|--------------------------------------------------------|
+| `mod-button1`      | Set the window to floating mode and move by dragging   |
+| `mod-button3`      | Set the window to floating mode and resize by dragging |
+| `mod-middleButton` | Raise the window to the top of the stack               |
+
+Ref: [[https://gist.github.com/micrub/aeebe7eb4d2df9e5e203e76a0fd89542]]
+
+

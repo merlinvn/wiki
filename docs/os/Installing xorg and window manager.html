@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="../style.css">
+<title>Installing xorg and window manager</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+
+
+<div id="Install Display Driver"><h1 id="Install Display Driver" class="header"><a href="#Install Display Driver">Install Display Driver</a></h1></div>
+
+<p>
+Follow the guild in <a href="https://wiki.archlinux.org/index.php/xorg#Installation">Arch Wiki</a> to find the suitable driver for your hardward.
+</p>
+
+<p>
+For integrated Intel chipsets, you can install by:
+</p>
+
+<pre bash>
+paru xf86-video-intel
+# pacman -S xf86-video-intel
+</pre>
+
+<div id="Install xorg and other neccessary softwares"><h1 id="Install xorg and other neccessary softwares" class="header"><a href="#Install xorg and other neccessary softwares">Install xorg and other neccessary softwares</a></h1></div>
+
+<p>
+First, we install the <code>xorg</code> and <code>xorg-init</code> packages
+</p>
+
+<pre bash>
+sudo pacman -S xorg xorg-xinit
+</pre>
+
+<p>
+Second, we need to install other components / softwares to have a workable windows system:
+</p>
+<ul>
+<li>
+<code>xmonad</code>: tiling window manger
+
+<li>
+<code>xmobar</code>: status bar
+
+<li>
+<code>dmenu</code>: a faster way run program
+
+<li>
+<code>lightdm</code>: display manager / login manager
+
+<li>
+<code>picom</code>: compositing window manager to render window tree into an off-screen buffer
+
+<li>
+<code>allacritty</code>: terminal emulator
+
+<li>
+<code>nitrogen</code>: to display wallpaper
+
+<li>
+<code>vim</code> / <code>neovim</code>: text editor
+
+<li>
+<code>brave</code>: web browser
+
+<li>
+<code>nerd-fonts-mononoki</code>: nerd font will be used in <code>alacritty</code>
+
+</ul>
+
+<pre bash>
+paru -S neovim-nightly-bin brave-bin alacritty lightdm lightdm-gtk-greeter picom xmonad xmonad-contrib xmobar dmenu nerd-fonts-mononoki
+</pre>
+
+<div id="Config .xinitrc, xmonad, xmobar"><h1 id="Config .xinitrc, xmonad, xmobar" class="header"><a href="#Config .xinitrc, xmonad, xmobar">Config .xinitrc, xmonad, xmobar</a></h1></div>
+
+<p>
+You can config <code>xmonad</code> from scratch to include the following:
+</p>
+<ul>
+<li>
+select <code>alacritty</code> as the main terminal emulator
+
+<li>
+auto start <code>picom &amp;</code> and <code>nitrogen --restore &amp;</code> when <code>xmonad</code> starting up
+
+</ul>
+
+<p>
+(<span class="todo">TODO</span>: Add details about how to config <code>xmonad</code>)
+</p>
+
+<p>
+If you already have the configuration files for <code>xmonad</code>, <code>xmobar</code>, and <code>alacritty</code>, just copy in and you're good to go.
+</p>
+
+<div id="Enable lightdm"><h1 id="Enable lightdm" class="header"><a href="#Enable lightdm">Enable lightdm</a></h1></div>
+
+<p>
+Just simply enable <code>lightdm</code> and reboot, when you log in, the system will automatically use <code>xmonad</code> as the window manager
+</p>
+
+<pre>
+sudo systemctl enable lightdm
+</pre>
+
+<div id="Next step"><h1 id="Next step" class="header"><a href="#Next step">Next step</a></h1></div>
+
+<p>
+Here is some suggestions for what to do next but not limit to:
+</p>
+<ul>
+<li>
+Use <code>nitrogen</code> to set wallpapers, then use the <code>crontab</code> to auto switch wallpaper every 20 minutes.
+
+<li>
+Customize <code>lightdm</code> to suite your looks and feels.
+
+<li>
+Customize <code>alacritty</code>
+
+<li>
+Install other softwares, i.e. file manager, ...
+
+</ul>
+
+</body>
+</html>

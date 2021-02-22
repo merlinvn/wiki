@@ -1,6 +1,8 @@
 = Arch Linux =
 
 * [[Installation]]
+* [[paru]] -- Package manager for the AUR (and a replacement for `pacman` as well)
+* [[Installing xorg and window manager]]
 
 = Tips =
 

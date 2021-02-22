@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="../style.css">
+<title>paru</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="Installation"><h1 id="Installation" class="header"><a href="#Installation">Installation</a></h1></div>
+
+<pre bash>
+sudo pacman -S --needed base-devel
+git clone https://aur.archlinux.org/paru.git
+cd paru
+makepkg -si
+</pre>
+
+<div id="Examples"><h1 id="Examples" class="header"><a href="#Examples">Examples</a></h1></div>
+
+<p>
+<code>paru &lt;target&gt;</code> -- Interactively search and install &lt;target&gt;.
+</p>
+
+<p>
+<code>paru</code> -- Alias for paru -Syu.
+</p>
+
+<p>
+<code>paru -Sua</code> -- Upgrade AUR packages.
+</p>
+
+<p>
+<code>paru -Qua</code> -- Print available AUR updates.
+</p>
+
+<p>
+<code>paru -G &lt;target&gt;</code> -- Download the PKGBUILD and related files of &lt;target&gt;.
+</p>
+
+<p>
+<code>paru -Gp &lt;target&gt;</code> -- Print the PKGBUILD of &lt;target&gt;.
+</p>
+
+<p>
+<code>paru -Gc &lt;target&gt;</code> -- Print the AUR comments of &lt;target&gt;.
+</p>
+
+<p>
+<code>paru --gendb</code> -- Generate the devel database for tracking *-git packages. This is only needed when you initially start using paru.
+</p>
+
+</body>
+</html>

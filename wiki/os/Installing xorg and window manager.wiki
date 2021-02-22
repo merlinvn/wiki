@@ -1,0 +1,66 @@
+
+
+= Install Display Driver =
+
+Follow the guild in [[https://wiki.archlinux.org/index.php/xorg#Installation|Arch Wiki]] to find the suitable driver for your hardward.
+
+For integrated Intel chipsets, you can install by:
+
+{{{bash
+paru xf86-video-intel
+# pacman -S xf86-video-intel
+}}}
+
+= Install xorg and other neccessary softwares =
+
+First, we install the `xorg` and `xorg-init` packages
+
+{{{bash
+sudo pacman -S xorg xorg-xinit
+}}}
+
+Second, we need to install other components / softwares to have a workable windows system:
+* `xmonad`: tiling window manger
+* `xmobar`: status bar
+* `dmenu`: a faster way run program
+* `lightdm`: display manager / login manager
+* `picom`: compositing window manager to render window tree into an off-screen buffer
+* `allacritty`: terminal emulator
+* `nitrogen`: to display wallpaper
+* `vim` / `neovim`: text editor
+* `brave`: web browser
+* `nerd-fonts-mononoki`: nerd font will be used in `alacritty`
+
+{{{bash
+paru -S neovim-nightly-bin brave-bin alacritty lightdm lightdm-gtk-greeter picom xmonad xmonad-contrib xmobar dmenu nerd-fonts-mononoki
+}}}
+
+= Config .xinitrc, xmonad, xmobar =
+
+You can config `xmonad` from scratch to include the following:
+* select `alacritty` as the main terminal emulator
+* auto start `picom &` and `nitrogen --restore &` when `xmonad` starting up
+
+(TODO: Add details about how to config `xmonad`)
+
+If you already have the configuration files for `xmonad`, `xmobar`, and `alacritty`, just copy in and you're good to go.
+
+= Enable lightdm =
+
+Just simply enable `lightdm` and reboot, when you log in, the system will automatically use `xmonad` as the window manager
+
+{{{
+sudo systemctl enable lightdm
+}}}
+
+= Next step =
+
+Here is some suggestions for what to do next but not limit to:
+* Use `nitrogen` to set wallpapers, then use the `crontab` to auto switch wallpaper every 20 minutes.
+* Customize `lightdm` to suite your looks and feels.
+* Customize `alacritty`
+* Install other softwares, i.e. file manager, ...
+
+
+
+

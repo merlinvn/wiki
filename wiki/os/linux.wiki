@@ -3,6 +3,7 @@
 * [[Installation]]
 * [[paru]] -- Package manager for the AUR (and a replacement for `pacman` as well)
 * [[Installing xorg and window manager]]
+* [[xmonad|xmonad]]
 
 = Tips =
 

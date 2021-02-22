@@ -9,7 +9,6 @@
 
 * [[tools/Vim|vim]]
 * [[tools/rbenv|rbenv]]
-* [[tools/xmonad|xmonad]]
 
 == Os ==
 

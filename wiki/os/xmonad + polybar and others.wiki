@@ -1,0 +1,36 @@
+* rofi
+  * `rofi -show run`
+  * theme
+
+* polybar (not working yet)
+  * install polybar
+  * install font
+    - `paru Font Awesome`
+    - `paru noto-fonts`
+    - `paru siji`
+
+* dunst
+  * `paru dunst`
+  * `paru libnotify`
+  * `paru Jetbrains Mono`
+
+* betterlockscreen
+  * `paru betterlockscreen`
+  * (required) `betterlockscreen -u ~/wallpapers` to update cache to a random pic, to change picture re-run it.
+  * set binding key Mod+shift+L in window manager
+  * lockscreen when suspensed (systemd service)
+{{{
+sudo cp ~/dotfiles/.config/betterlockscreen/betterlockscreen\@.service /etc/systemd/system
+systemctl enable betterlockscreen@$USER
+#systemctl disable betterlockscreen@$USER
+}}}
+
+* Edit xorg config to enable Display Power managment [[https://wiki.archlinux.org/index.php/Display_Power_Management_Signaling|Wiki]]
+(But this only works with monitor)
+
+
+* picom
+  - config file
+  -
+* standalonetray
+* udiskie

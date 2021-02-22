@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="../style.css">
+<title>xmonad + polybar and others</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<ul>
+<li>
+rofi
+
+<ul>
+<li>
+<code>rofi -show run</code>
+
+<li>
+theme
+
+</ul>
+</ul>
+
+<ul>
+<li>
+polybar (not working yet)
+
+<ul>
+<li>
+install polybar
+
+<li>
+install font
+
+<ul>
+<li>
+<code>paru Font Awesome</code>
+
+<li>
+<code>paru noto-fonts</code>
+
+<li>
+<code>paru siji</code>
+
+</ul>
+</ul>
+</ul>
+
+<ul>
+<li>
+dunst
+
+<ul>
+<li>
+<code>paru dunst</code>
+
+<li>
+<code>paru libnotify</code>
+
+<li>
+<code>paru Jetbrains Mono</code>
+
+</ul>
+</ul>
+
+<ul>
+<li>
+betterlockscreen
+
+<ul>
+<li>
+<code>paru betterlockscreen</code>
+
+<li>
+(required) <code>betterlockscreen -u ~/wallpapers</code> to update cache to a random pic, to change picture re-run it.
+
+<li>
+set binding key Mod+shift+L in window manager
+
+<li>
+lockscreen when suspensed (systemd service)
+<pre>
+sudo cp ~/dotfiles/.config/betterlockscreen/betterlockscreen\@.service /etc/systemd/system
+systemctl enable betterlockscreen@$USER
+#systemctl disable betterlockscreen@$USER
+</pre>
+
+</ul>
+</ul>
+
+<ul>
+<li>
+Edit xorg config to enable Display Power managment <a href="https://wiki.archlinux.org/index.php/Display_Power_Management_Signaling">Wiki</a>
+
+</ul>
+<p>
+(But this only works with monitor)
+</p>
+
+
+<ul>
+<li>
+picom
+
+<ul>
+<li>
+config file
+  -
+
+</ul>
+<li>
+standalonetray
+
+<li>
+udiskie
+
+</ul>
+
+</body>
+</html>

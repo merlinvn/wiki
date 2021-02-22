@@ -23,7 +23,7 @@ Second, we need to install other components / softwares to have a workable windo
 * `xmonad`: tiling window manger
 * `xmobar`: status bar
 * `dmenu`: a faster way run program
-* `lightdm`: display manager / login manager
+* `lightdm`: display manager / login manager OR simply use the `startx` method (modified the `.profile` and `.xinitrc` files)
 * `picom`: compositing window manager to render window tree into an off-screen buffer
 * `allacritty`: terminal emulator
 * `nitrogen`: to display wallpaper

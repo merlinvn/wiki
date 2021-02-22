@@ -1,0 +1,5 @@
+* [[Install xmonad]]
+
+* [[Basics shortcuts]]
+
+* [[xmonad + polybar and others]]

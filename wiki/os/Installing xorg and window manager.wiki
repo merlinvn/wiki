@@ -22,14 +22,14 @@ sudo pacman -S xorg xorg-xinit
 Second, we need to install other components / softwares to have a workable windows system:
 * `xmonad`: tiling window manger
 * `xmobar`: status bar
+* `nitrogen`: to display wallpaper
 * `dmenu`: a faster way run program
-* `lightdm`: display manager / login manager OR simply use the `startx` method (modified the `.profile` and `.xinitrc` files)
 * `picom`: compositing window manager to render window tree into an off-screen buffer
 * `allacritty`: terminal emulator
-* `nitrogen`: to display wallpaper
-* `vim` / `neovim`: text editor
-* `brave`: web browser
 * `nerd-fonts-mononoki`: nerd font will be used in `alacritty`
+* `vim` / `neovim`: text editor
+* `lightdm`: display manager / login manager OR simply use the `startx` method (modified the `.profile` and `.xinitrc` files)
+* `brave`: web browser
 
 {{{bash
 paru -S neovim-nightly-bin brave-bin alacritty lightdm lightdm-gtk-greeter picom xmonad xmonad-contrib xmobar dmenu nerd-fonts-mononoki

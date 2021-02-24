@@ -1,0 +1,5 @@
+* `paru dunst`
+* `paru libnotify`
+* `paru Jetbrains Mono`
+
+

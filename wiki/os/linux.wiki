@@ -1,9 +1,41 @@
 = Arch Linux =
 
 * [[Installation]]
-* [[paru]] -- Package manager for the AUR (and a replacement for `pacman` as well)
+* [[paru]] -- Package manager for the AUR ( as `yay` is not updating anymore and as a replacement for `pacman` as well)
 * [[Installing xorg and window manager]]
+
+= Tiling Windows Manager =
+
 * [[xmonad|xmonad]]
+* [[xmobar]]
+* [[leftwm]]
+* [[polybar]]
+
+= Useful Tools =
+
+* [[feh]] -- image viewer and wallpaper changing tool
+* [[nitrogen]] -- another wallpaper changing tool
+* [[cheat.sh]] -- The only cheetsheet you need
+* [[rofi]] -- launch bar
+* [[peek]] -- simple gif/video recorder
+* [[flameshot]] -- powerfull utility to capture and annotation screenshot
+* [[dunst]] -- simple notification manager
+* [[betterlockscreen]] -- just a lock screen
+* [[mc]] -- Midnight Commander File Explorer
+* obs --
+* vysor -- connect Android phone's screen wirelessly
+* picom
+* standalonetray
+* udiskie
+* [[brave]] -- chromium-based and no ads browser, still as heavy memory consumption as chrome =)) ...
+* lotion -- unofficial Notion app for linux
+* Figma-Linx -- unofficial Figma app for linux
+
+
+...
+
+* vscode
+* docker
 
 = Tips =
 

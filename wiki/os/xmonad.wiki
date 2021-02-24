@@ -2,4 +2,3 @@
 
 * [[Basics shortcuts]]
 
-* [[xmonad + polybar and others]]

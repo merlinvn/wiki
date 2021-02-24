@@ -1,0 +1,7 @@
+  * install polybar
+  * install font
+    - `paru Font Awesome`
+    - `paru noto-fonts`
+    - `paru siji`
+
+

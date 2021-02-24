@@ -1,0 +1,4 @@
+  * `flameshot gui -p [image path]` capture portion of screen, with annotation
+  * `flameshot full -p [image path]` capture full screen
+
+

@@ -1,24 +1,8 @@
-* rofi
-  * `rofi -show run`
-  * theme
-
-* polybar (not working yet)
-  * install polybar
-  * install font
-    - `paru Font Awesome`
-    - `paru noto-fonts`
-    - `paru siji`
-
-* dunst
-  * `paru dunst`
-  * `paru libnotify`
-  * `paru Jetbrains Mono`
-
-* betterlockscreen
   * `paru betterlockscreen`
   * (required) `betterlockscreen -u ~/wallpapers` to update cache to a random pic, to change picture re-run it.
   * set binding key Mod+shift+L in window manager
   * lockscreen when suspensed (systemd service)
+
 {{{
 sudo cp ~/dotfiles/.config/betterlockscreen/betterlockscreen\@.service /etc/systemd/system
 systemctl enable betterlockscreen@$USER
@@ -29,15 +13,4 @@ systemctl enable betterlockscreen@$USER
 (But this only works with monitor)
 
 
-* [[https://github.com/flameshot-org/flameshot|flameshot]]
-  * `flameshot gui -p [image path]` capture portion of screen, with annotation
-  * `flameshot full -p [image path]` capture full screen
 
-* mc - Midnight Commander File Explorer
-
-
-* picom
-  - config file
-  -
-* standalonetray
-* udiskie

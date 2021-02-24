@@ -2,71 +2,11 @@
 <html>
 <head>
 <link rel="Stylesheet" type="text/css" href="../style.css">
-<title>xmonad + polybar and others</title>
+<title>betterlockscreen</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-
-<ul>
-<li>
-rofi
-
-<ul>
-<li>
-<code>rofi -show run</code>
-
-<li>
-theme
-
-</ul>
-</ul>
-
-<ul>
-<li>
-polybar (not working yet)
-
-<ul>
-<li>
-install polybar
-
-<li>
-install font
-
-<ul>
-<li>
-<code>paru Font Awesome</code>
-
-<li>
-<code>paru noto-fonts</code>
-
-<li>
-<code>paru siji</code>
-
-</ul>
-</ul>
-</ul>
-
-<ul>
-<li>
-dunst
-
-<ul>
-<li>
-<code>paru dunst</code>
-
-<li>
-<code>paru libnotify</code>
-
-<li>
-<code>paru Jetbrains Mono</code>
-
-</ul>
-</ul>
-
-<ul>
-<li>
-betterlockscreen
 
 <ul>
 <li>
@@ -80,14 +20,14 @@ set binding key Mod+shift+L in window manager
 
 <li>
 lockscreen when suspensed (systemd service)
+
+</ul>
+
 <pre>
 sudo cp ~/dotfiles/.config/betterlockscreen/betterlockscreen\@.service /etc/systemd/system
 systemctl enable betterlockscreen@$USER
 #systemctl disable betterlockscreen@$USER
 </pre>
-
-</ul>
-</ul>
 
 <ul>
 <li>
@@ -97,46 +37,6 @@ Edit xorg config to enable Display Power managment <a href="https://wiki.archlin
 <p>
 (But this only works with monitor)
 </p>
-
-
-<ul>
-<li>
-<a href="https://github.com/flameshot-org/flameshot">flameshot</a>
-
-<ul>
-<li>
-<code>flameshot gui -p [image path]</code> capture portion of screen, with annotation
-
-<li>
-<code>flameshot full -p [image path]</code> capture full screen
-
-</ul>
-</ul>
-
-<ul>
-<li>
-mc - Midnight Commander File Explorer
-
-</ul>
-
-
-<ul>
-<li>
-picom
-
-<ul>
-<li>
-config file
-  -
-
-</ul>
-<li>
-standalonetray
-
-<li>
-udiskie
-
-</ul>
 
 </body>
 </html>

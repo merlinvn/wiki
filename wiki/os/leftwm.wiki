@@ -1,0 +1,7 @@
+= Theme =
+
+Theme will be loaded from the folder `~/.config/leftwm/themes/current/`
+* `up` script is called everytime the `leftwm` is loading / loaded.
+* `down` script is called everytime the `leftwm` is terminating / terminated.
+
+

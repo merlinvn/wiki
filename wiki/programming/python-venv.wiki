@@ -1,0 +1,31 @@
+Create a new virtual environment by choosing a Python interpreter and making a ./venv directory to hold it:
+
+{{{
+python3 -m venv --system-site-packages ./venv
+}}}
+
+Activate the virtual environment using a shell-specific command:
+
+{{{
+source ./venv/bin/activate  # sh, bash, or zsh
+
+. ./venv/bin/activate.fish  # fish
+
+source ./venv/bin/activate.csh  # csh or tcsh
+}}}
+
+When the virtual environment is active, your shell prompt is prefixed with (venv).
+
+Install packages within a virtual environment without affecting the host system setup. Start by upgrading pip:
+
+{{{
+pip install --upgrade pip
+
+pip list  # show packages installed within the virtual environment
+}}}
+
+And to exit the virtual environment later:
+
+{{{
+deactivate  # don't exit until you're done with your work session.
+}}}

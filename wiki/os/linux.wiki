@@ -26,11 +26,12 @@
 * vysor -- connect Android phone's screen wirelessly
 * picom
 * standalonetray
+* pnmixer -- system tray volume control
 * udiskie
 * [[brave]] -- chromium-based and no ads browser, still as heavy memory consumption as chrome =)) ...
 * lotion -- unofficial Notion app for linux
 * Figma-Linx -- unofficial Figma app for linux
-
+* [[ibus]] -- Vietnamese keyboard with `bamboo-ibus-git`
 
 ...
 
@@ -40,3 +41,4 @@
 = Tips =
 
 * [[Cronjob change wallpaper every 20 minutes]]
+* Arch Linux: NEVER ever call `sudo pip install <packages>` system wide. Use `virtualenv` or `python3-venv` instead.

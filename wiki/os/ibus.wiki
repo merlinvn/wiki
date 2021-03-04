@@ -1,0 +1,9 @@
+* install `ibus`, `bamboo-ibus-git`
+* edit `/etc/environment` or `.profile` and add the following lines:
+{{{
+GTK_IM_MODULE=ibus
+QT_IM_MODULE=ibus
+XMODIFIERS=@im=ibus
+}}}
+* add `ibus-daemon -drx` to `.xinitrc`
+

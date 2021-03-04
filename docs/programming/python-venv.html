@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="../style.css">
+<title>python-venv</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<p>
+Create a new virtual environment by choosing a Python interpreter and making a ./venv directory to hold it:
+</p>
+
+<pre>
+python3 -m venv --system-site-packages ./venv
+</pre>
+
+<p>
+Activate the virtual environment using a shell-specific command:
+</p>
+
+<pre>
+source ./venv/bin/activate  # sh, bash, or zsh
+
+. ./venv/bin/activate.fish  # fish
+
+source ./venv/bin/activate.csh  # csh or tcsh
+</pre>
+
+<p>
+When the virtual environment is active, your shell prompt is prefixed with (venv).
+</p>
+
+<p>
+Install packages within a virtual environment without affecting the host system setup. Start by upgrading pip:
+</p>
+
+<pre>
+pip install --upgrade pip
+
+pip list  # show packages installed within the virtual environment
+</pre>
+
+<p>
+And to exit the virtual environment later:
+</p>
+
+<pre>
+deactivate  # don't exit until you're done with your work session.
+</pre>
+
+</body>
+</html>

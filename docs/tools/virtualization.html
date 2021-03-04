@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="../style.css">
+<title>virtualization</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="Check KVM"><h1 id="Check KVM" class="header"><a href="#Check KVM">Check KVM</a></h1></div>
+
+<div id="Check KVM-Hardware"><h2 id="Hardware" class="header"><a href="#Check KVM-Hardware">Hardware</a></h2></div>
+<pre bash>
+LC_ALL=C lscpu | grep Virtualization
+</pre>
+
+<p>
+Alternatively:
+</p>
+
+<pre>
+grep -E --color=auto 'vmx|svm|0xc0f' /proc/cpuinfo
+</pre>
+
+<p>
+If nothing is displayed after running either command, then your processor does not support hardware virtualization, and you will not be able to use KVM.
+</p>
+
+<div id="Check KVM-Kernel"><h2 id="Kernel" class="header"><a href="#Check KVM-Kernel">Kernel</a></h2></div>
+
+<p>
+One can check if the necessary modules, kvm and either kvm_amd or kvm_intel, are available in the kernel with the following command:
+</p>
+
+<pre>
+zgrep CONFIG_KVM /proc/config.gz
+</pre>
+
+<p>
+The module is available only if it is set to either <code>y</code> or <code>m</code>.
+</p>
+
+<p>
+Then, ensure that the kernel modules are automatically loaded, with the command:
+</p>
+
+<pre>
+lsmod | grep kvm
+</pre>
+
+<div id="Check KVM-Para-virtualization with virtio"><h2 id="Para-virtualization with virtio" class="header"><a href="#Check KVM-Para-virtualization with virtio">Para-virtualization with virtio</a></h2></div>
+<p>
+Use the following command to check if the VIRTIO modules are available in the kernel inside the virtual machine:
+</p>
+
+<pre>
+zgrep VIRTIO /proc/config.gz
+</pre>
+
+<p>
+Then, check if the kernel modules are automatically loaded with the command:
+</p>
+
+<pre>
+lsmod | grep virtio
+</pre>
+
+<p>
+In case the above commands return nothing, you need to load the kernel modules manually.
+</p>
+
+<pre>
+sudo vim /etc/modules-load.d/virtio.conf
+</pre>
+
+<p>
+then add the missing <code>virtio-xxx</code> line by line and reboot.
+</p>
+
+<div id="Install"><h1 id="Install" class="header"><a href="#Install">Install</a></h1></div>
+
+<ul>
+<li>
+Install <code>qemu</code>
+
+<li>
+Install <code>virt-manager</code>
+
+<li>
+Install <code>ebtable</code>
+
+<li>
+Install <code>lxsession</code>
+
+<li>
+Enable <code>libvirtd</code> service
+
+<li>
+Add user to <code>libvirt</code> group
+
+</ul>
+
+<pre>
+sudo usermod -G libvirt -a &lt;username&gt;
+</pre>
+
+<ul>
+<li>
+reboot
+
+<li>
+Enabling IOMMU
+
+</ul>
+
+<p>
+Edit grub
+</p>
+<pre>
+sudo vi /etc/default/grub
+</pre>
+
+<p>
+Enable IOMMU support by setting the correct kernel parameter depending on the type of CPU in use:
+</p>
+
+<p>
+For Intel CPUs (VT-d) set <code>intel_iommu=on</code>
+For AMD CPUs (AMD-Vi) set <code>amd_iommu=on</code>
+</p>
+
+<p>
+Find and edit the line
+</p>
+<pre>
+GRUB_CMDLINE_LINUX_DEFAULT="intel_iommu=on loglevel=3 quiet"
+</pre>
+
+<p>
+Then update grub:
+</p>
+
+<pre>
+  update-grub
+</pre>
+
+<ul>
+<li>
+Install minikube
+
+<li>
+Start with <code>minikube start</code>
+
+<li>
+Check with <code>kubectl get pods -A</code>
+
+<li>
+Stop with <code>minikube stop</code>
+
+</ul>
+
+<ul>
+<li>
+Install other firmware:
+
+<ul>
+<li>
+UEFI: <code>edk2-ovmf</code>
+
+<li>
+<code>dmidecode</code>
+
+</ul>
+</ul>
+
+
+<div id="Install-vagrant"><h2 id="vagrant" class="header"><a href="#Install-vagrant">vagrant</a></h2></div>
+
+<p>
+<span id="Install-vagrant-vagrant 2.2.14 is not working with libvirt in arch linux"></span><strong id="vagrant 2.2.14 is not working with libvirt in arch linux">vagrant 2.2.14 is not working with libvirt in arch linux</strong>
+</p>
+
+<ul>
+<li>
+Install vagrant
+
+<li>
+Install vagrant plugin
+
+</ul>
+
+<pre bash>
+vagrant plugin install vagrant-libvirt
+
+vagrant plugin install vagrant-vbguest vagrant-share
+</pre>
+
+</body>
+</html>

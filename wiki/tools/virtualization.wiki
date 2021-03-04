@@ -1,0 +1,111 @@
+= Check KVM =
+
+== Hardware ==
+{{{bash
+LC_ALL=C lscpu | grep Virtualization
+}}}
+
+Alternatively:
+
+{{{
+grep -E --color=auto 'vmx|svm|0xc0f' /proc/cpuinfo
+}}}
+
+If nothing is displayed after running either command, then your processor does not support hardware virtualization, and you will not be able to use KVM.
+
+== Kernel ==
+
+One can check if the necessary modules, kvm and either kvm_amd or kvm_intel, are available in the kernel with the following command:
+
+{{{
+zgrep CONFIG_KVM /proc/config.gz
+}}}
+
+The module is available only if it is set to either `y` or `m`.
+
+Then, ensure that the kernel modules are automatically loaded, with the command:
+
+{{{
+lsmod | grep kvm
+}}}
+
+== Para-virtualization with virtio ==
+Use the following command to check if the VIRTIO modules are available in the kernel inside the virtual machine:
+
+{{{
+zgrep VIRTIO /proc/config.gz
+}}}
+
+Then, check if the kernel modules are automatically loaded with the command:
+
+{{{
+lsmod | grep virtio
+}}}
+
+In case the above commands return nothing, you need to load the kernel modules manually.
+
+{{{
+sudo vim /etc/modules-load.d/virtio.conf
+}}}
+
+then add the missing `virtio-xxx` line by line and reboot.
+
+= Install =
+
+* Install `qemu`
+* Install `virt-manager`
+* Install `ebtable`
+* Install `lxsession`
+* Enable `libvirtd` service
+* Add user to `libvirt` group
+
+{{{
+sudo usermod -G libvirt -a <username>
+}}}
+
+* reboot
+* Enabling IOMMU
+
+Edit grub
+{{{
+sudo vi /etc/default/grub
+}}}
+
+Enable IOMMU support by setting the correct kernel parameter depending on the type of CPU in use:
+
+For Intel CPUs (VT-d) set `intel_iommu=on`
+For AMD CPUs (AMD-Vi) set `amd_iommu=on`
+
+Find and edit the line
+{{{
+GRUB_CMDLINE_LINUX_DEFAULT="intel_iommu=on loglevel=3 quiet"
+}}}
+
+Then update grub:
+
+{{{
+  update-grub
+}}}
+
+* Install minikube
+* Start with `minikube start`
+* Check with `kubectl get pods -A`
+* Stop with `minikube stop`
+
+* Install other firmware:
+  * UEFI: `edk2-ovmf`
+  * `dmidecode`
+
+
+== vagrant ==
+
+*vagrant 2.2.14 is not working with libvirt in arch linux*
+
+* Install vagrant
+* Install vagrant plugin
+
+{{{bash
+vagrant plugin install vagrant-libvirt
+
+vagrant plugin install vagrant-vbguest vagrant-share
+}}}

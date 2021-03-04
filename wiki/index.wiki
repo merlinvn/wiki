@@ -4,11 +4,13 @@
 
 * [[programming/C++|C++]]
 * [[programming/Go|Go]]
-
+* [[programming/Python|Python]]
+*
 == Tools ==
 
 * [[tools/Vim|vim]]
 * [[tools/rbenv|rbenv]]
+* [[tools/virtualization|virtualization]] -- QEMU + libvirt + minikube + vagrant
 
 == Os ==
 

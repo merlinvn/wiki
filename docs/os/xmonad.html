@@ -20,5 +20,44 @@
 
 </ul>
 
+
+
+<div id="Issues"><h1 id="Issues" class="header"><a href="#Issues">Issues</a></h1></div>
+
+<div id="Issues-Problems with finding shared libraries after update"><h2 id="Problems with finding shared libraries after update" class="header"><a href="#Issues-Problems with finding shared libraries after update">Problems with finding shared libraries after update</a></h2></div>
+
+<p>
+The xmonad executable is located in ~/.xmonad/. After upgrading xmonad, an old
+executable might persist and need in that case be removed for xmonad to compile
+a new executable. Alternatively use xmonad --recompile.
+</p>
+
+<p>
+The recompilation can be automated by adding a pacman hook like the following
+to /etc/pacman.d/hooks/xmonad.hook (you may have to first create the hooks
+directory):
+</p>
+
+<pre>
+[Trigger]
+Operation = Upgrade
+Type = Package
+Target = xmonad
+
+[Action]
+Description = Recompiling xmonad...
+When = PostTransaction
+Exec = /usr/bin/sudo -u YOUR_USERNAME /usr/bin/xmonad --recompile
+</pre>
+
+<p>
+Where YOUR_USERNAME is the username that you run xmonad from.
+In the case that xmonad --recompile can't find any modules at all (including XMonad itself), try regenerating the package database cache
+</p>
+
+<pre>
+sudo ghc-pkg recache
+</pre>
+
 </body>
 </html>

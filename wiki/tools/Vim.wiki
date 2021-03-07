@@ -3,3 +3,29 @@
 
 == Editing ==
 * [[Wrap Existing Text at 80 Characters in Vim]]
+
+== Plugin ==
+
+* gruvbox-community/gruvbox
+* itchyny/lightline.vim
+* cchrisbra/Colorizer
+* smhinz/vim-startify
+* liuchengxu/vim-which-key
+
+* easymotion/vim-easymotion
+* junegunn/fzf.vim
+* tnvim-telescope/telescope.nvim
+
+* neovim/nvim-lspconfig
+* nvim-lua/completion-nvim
+* nvim-treesitter/nvim-treesitter
+
+* voldikss/vim-floaterm
+* vimwiki/vimwiki
+
+
+
+Not used yet:
+
+* honza/vim-snippets
+* Pablo1107/codi.vim -- scratchpad for hackers

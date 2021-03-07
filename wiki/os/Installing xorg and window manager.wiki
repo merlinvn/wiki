@@ -32,10 +32,10 @@ Second, we need to install other components / softwares to have a workable windo
 * `brave`: web browser
 
 {{{bash
-paru -S neovim-nightly-bin brave-bin alacritty lightdm lightdm-gtk-greeter picom xmonad xmonad-contrib xmobar dmenu nerd-fonts-mononoki
+paru -S neovim-nightly-bin brave-bin alacritty lightdm lightdm-gtk-greeter xmonad xmonad-contrib xmobar dmenu nitrogen picom nerd-fonts-mononoki
 }}}
 
-= Config .xinitrc, xmonad, xmobar =
+= Config .xinitrc, xmonad =
 
 You can config `xmonad` from scratch to include the following:
 * select `alacritty` as the main terminal emulator
